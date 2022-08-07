@@ -25,13 +25,18 @@ function unlockProducers(producers, coffeeCount) {
 
 function getUnlockedProducers(data) {
   unlockProducers(data.producers, data.coffee);
-  return data.producers.filter(producer => {
-    return producer.unlocked
-  })
+  return data.producers.filter((producer) => {
+    return producer.unlocked;
+  });
 }
 
 function makeDisplayNameFromId(id) {
-  // your code here
+  return id
+    .split("_")
+    .map((word) => {
+      return word.slice(0, 1).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
 }
 
 // You shouldn't need to edit this function-- its tests should pass once you've written makeDisplayNameFromId
@@ -56,11 +61,18 @@ function makeProducerDiv(producer) {
 }
 
 function deleteAllChildNodes(parent) {
-  // your code here
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 }
 
 function renderProducers(data) {
-  // your code here
+  let prodContainer = document.getElementById("producer_container");
+  let unlockedProducers = getUnlockedProducers(data);
+  deleteAllChildNodes(prodContainer);
+  unlockedProducers.forEach((producer) => {
+    prodContainer.appendChild(makeProducerDiv(producer));
+  });
 }
 
 /**************
