@@ -5,11 +5,12 @@
  **************/
 
 function updateCoffeeView(coffeeQty) {
-  // your code here
+  document.getElementById('coffee_counter').innerText = coffeeQty
 }
 
 function clickCoffee(data) {
-  // your code here
+  data.coffee++
+  updateCoffeeView(data.coffee)
 }
 
 /**************
